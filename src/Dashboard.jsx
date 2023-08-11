@@ -46,8 +46,8 @@ const Dashboard = () => {
     }));
 
     return (
-        <Button variant="contained" >
-            <CSVLink data={csvData} filename="records.csv">
+        <Button variant="contained">
+            <CSVLink style={{ textDecoration: "none", fontWeight: "700"}} data={csvData} filename="records.csv">
                 Download CSV
             </CSVLink>
         </Button>
@@ -77,7 +77,8 @@ const Dashboard = () => {
   );
 
   return (
-    <div>
+    <div style={{ margin: '28px 0'}}>
+      <div style={{ marginBottom: "18px"}}>
       <TextField
         label="Search"
         variant="outlined"
@@ -91,6 +92,7 @@ const Dashboard = () => {
           {/* Add filter options */}
         </Select>
       </FormControl>
+      </div>
       <TableContainer component={Paper} variant='outlined'>
         <Table>
           <TableHead>

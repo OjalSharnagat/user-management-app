@@ -1,0 +1,216 @@
+{
+    "students": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "age": 20,
+            "education": [
+                {
+                    "degree": "Bachelor of Science",
+                    "major": "Computer Science",
+                    "university": "University of Example",
+                    "graduationYear": 2024
+                }
+            ],
+            "skills": [
+                "Programming",
+                "Problem Solving",
+                "Teamwork"
+            ],
+            "projects": [
+                {
+                    "title": "Online Quiz App",
+                    "description": "Developed a web-based quiz application using React and Node.js.",
+                    "year": 2023
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Lily Martinez",
+            "age": 22,
+            "education": [
+                {
+                    "degree": "Bachelor of Business Administration",
+                    "major": "Marketing",
+                    "university": "Marketing University",
+                    "graduationYear": 2023
+                }
+            ],
+            "skills": [
+                "Marketing Strategy",
+                "Digital Marketing",
+                "Content Creation"
+            ],
+            "projects": [
+                {
+                    "title": "Social Media Campaign",
+                    "description": "Developed and executed a successful social media campaign for a local charity event.",
+                    "year": 2022
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Alex Johnson",
+            "age": 21,
+            "education": [
+                {
+                    "degree": "Bachelor of Business Administration",
+                    "major": "Marketing",
+                    "university": "Business University",
+                    "graduationYear": 2024
+                }
+            ],
+            "skills": [
+                "Marketing Strategy",
+                "Market Research",
+                "Communication"
+            ],
+            "projects": [
+                {
+                    "title": "Social Media Campaign",
+                    "description": "Created and executed a successful social media campaign for a local charity event.",
+                    "year": 2023
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Sophie Lee",
+            "age": 23,
+            "education": [
+                {
+                    "degree": "Bachelor of Science",
+                    "major": "Mechanical Engineering",
+                    "university": "Engineering Institute",
+                    "graduationYear": 2022
+                }
+            ],
+            "skills": [
+                "CAD Software",
+                "Mechanical Design",
+                "Project Management"
+            ],
+            "projects": [
+                {
+                    "title": "Automated Garden Irrigation System",
+                    "description": "Designed and prototyped an automated irrigation system for home gardens.",
+                    "year": 2022
+                }
+            ]
+        }
+    ],
+    "professionals": [
+        {
+            "id": 1,
+            "name": "Michael Johnson",
+            "age": 30,
+            "experience": [
+                {
+                    "title": "Software Engineer",
+                    "company": "Tech Solutions Inc.",
+                    "years": 5
+                },
+                {
+                    "title": "Senior Software Engineer",
+                    "company": "InnovateTech",
+                    "years": 2
+                }
+            ],
+            "skills": [
+                "Java",
+                "Python",
+                "Distributed Systems"
+            ],
+            "projects": [
+                {
+                    "title": "E-commerce Platform",
+                    "description": "Led a team that developed a scalable e-commerce platform handling millions of transactions.",
+                    "year": 2022
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Ojal Sharnagat",
+            "age": 22,
+            "experience": [
+                {
+                    "title": "Software Developer",
+                    "company": "XYZ Tech Solutions",
+                    "years": 3.5
+                },
+                {
+                    "title": "Web developer",
+                    "company": "Amazon Web Services",
+                    "years": 4.1
+                }
+                
+            ],
+            "skills": [
+                "JavaScript",
+                "PHP",
+                "ReactJS"
+            ],
+            "projects": [
+                {
+                  "title": "E-commerce Platform",
+                  "description": "Led a team that developed a scalable e-commerce platform.",
+                  "year": 2022
+                }
+            ]
+        },
+        {
+            "id": 679,
+            "name": "Jason Holder",
+            "age": 25,
+            "experience": [
+                {"title":"Web developer","company":"Google Inc.","years":2}
+            ],
+            "skills": [
+                "HTML/CSS",
+                "Javascript",
+                "Angular JS"
+            ],
+            "projects": [
+                {
+                    "title": "Mobile App Redesign",
+                    "description": "Led the redesign of a mobile app resulting in improved user engagement and ratings.",
+                    "year": 2021
+                }
+            ]
+        },
+    
+      
+      {
+        "id": 10,
+        "name": "Olivia Brown",
+        "age": 28,
+        "experience": [
+            {
+                "title": "UX Designer",
+                "company": "Design Innovations",
+                "years": 4
+            },
+            {
+                "title": "Senior UX Designer",
+                "company": "UserXperience",
+                "years": 2
+            }
+        ],
+        "skills": [
+            "User-Centered Design",
+            "Wireframing",
+            "Prototyping"
+        ],
+        "projects": [
+            {
+                "title": "Mobile App Redesign",
+                "description": "Led the redesign of a mobile app resulting in improved user engagement and ratings.",
+                "year": 2021
+            }
+        ]
+    }
+]
+}
