@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Resume from './pages/resume';
+import Home from './pages/Home';
 import { AppBar, Typography, Toolbar, Card, Container, CssBaseline, ThemeProvider, Grid } from '@mui/material';
 import { ColorModeContext, useMode } from "./theme";
 import Topbar from "./components/Topbar";
@@ -23,17 +24,13 @@ const App = () => {
               </Typography>
             </Toolbar>
           </AppBar>
-          <div>
-            <Grid container spacing={2} justify="center">
-            <Card variant="outlined">Admin Dashboard</Card>
-            <Card variant="outlined">Admin Dashboard</Card>
-            </Grid>
-          </div>
+         
           <main className='content'>
             <div>
               <Container>
                 <Router>
                   <Routes>
+                    <Route path="/" element={<Home />} />
                     <Route path="/admin/dashboard" element={<Dashboard />} />
                     <Route path='/user/resume-builder' element={<Resume />}/>
                   </Routes>
