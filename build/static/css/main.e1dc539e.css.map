@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.e1dc539e.css","mappings":"kGAEA,yBAIE,qCACF","sources":["index.css"],"sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap');\n\nhtml,\nbody,\n#root,\n.content {\n  font-family: 'Source Sans 3', sans-serif;\n}\n\n"],"names":[],"sourceRoot":""}
