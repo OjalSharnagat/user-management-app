@@ -17,7 +17,7 @@ import {
   Select,
   TablePagination,
 } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+
 import { CSVLink } from 'react-csv';
 import { fetchRecords } from './api';
 

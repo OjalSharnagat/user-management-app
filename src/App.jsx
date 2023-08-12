@@ -1,48 +1,49 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dashboard from './Dashboard';
-import Resume from './pages/resume';
-import Home from './pages/Home';
-import { AppBar, Typography, Toolbar, Card, Container, CssBaseline, ThemeProvider, Grid } from '@mui/material';
+import React from "react";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./Dashboard";
+import Resume from "./pages/resume";
+import Home from "./pages/Home";
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Topbar from "./components/Topbar";
-
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
   const [theme, colorMode] = useMode();
+  const [isSidebar, setIsSidebar] = useState(true);
 
   return (
-    <>
-
+    
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <AppBar position='relative'>
-            <Toolbar sx={{ justifyContent: 'space-between' }}>
-              <Typography variant="h6">
-                Admin Dashboard
-              </Typography>
+          <AppBar position="relative">
+            <Toolbar sx={{ justifyContent: "space-between" }}>
+              <Typography variant="h6">Admin Dashboard</Typography>
             </Toolbar>
           </AppBar>
-         
-          <main className='content'>
-            <div>
-              <Container>
-                <Router>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/admin/dashboard" element={<Dashboard />} />
-                    <Route path='/user/resume-builder' element={<Resume />}/>
-                  </Routes>
-                </Router>
-              </Container>
-            </div>
-          </main>
+
+          <div className="app">
+            <Sidebar isSidebar={isSidebar} />
+            <main className="content">
+              <Topbar setIsSidebar={setIsSidebar} />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/admin/dashboard" element={<Dashboard />} />
+                <Route path="/user/resume-builder" element={<Resume />} />
+              </Routes>
+            </main>
+          </div>
         </ThemeProvider>
       </ColorModeContext.Provider>
-
-
-    </>
+    
   );
 };
 

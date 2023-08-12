@@ -13,7 +13,7 @@ import {
   CardContent,
   Button,
 } from '@mui/material';
-import { PDFDownloadLink, Document, Page, Text, View } from "@react-pdf/renderer";
+
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import resumeData from '../data/resumeData.json'; // Import the JSON data
