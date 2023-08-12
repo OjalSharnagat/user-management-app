@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-
+## Live Project URL: [https://os-dataverse.netlify.app](https://os-dataverse.netlify.app)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
