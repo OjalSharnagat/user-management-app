@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://randomuser.me/api/?nat=us&results=100&page=1'; // Replace with your actual API URL
+const API_BASE_URL = 'https://randomuser.me/api/?nat=us&results=100&page=1'; 
 
 export const fetchRecords = async () => {
   try {

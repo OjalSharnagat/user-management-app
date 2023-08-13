@@ -1,135 +1,148 @@
-import React from 'react';
-
-import { useQuery } from 'react-query';
+import React from "react";
+import { useQuery } from "react-query";
+import { CSVLink } from "react-csv";
+import { fetchRecords } from "./api";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
   TextField,
   Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TablePagination,
-} from '@mui/material';
-
-import { CSVLink } from 'react-csv';
-import { fetchRecords } from './api';
+  Box,
+  useTheme
+} from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import { tokens } from "./theme";
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 const Dashboard = () => {
-  const { data: response, isLoading } = useQuery('records', fetchRecords);
 
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+
+  const { data: response, isLoading } = useQuery("records", fetchRecords);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [filter, setFilter] = React.useState('');
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [filter, setFilter] = React.useState("");
+  const [searchTerm, setSearchTerm] = React.useState("");
 
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value);
-  };
+
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-  };
-
-  const handleDownload = () => {
-    const csvData = filteredRecords.map((record) => ({
-      id: record.id,
-      name: record.name.first + ' ' + record.name.last,
-      gender: record.gender
-      // Add more fields
-    }));
-
-    return (
-        <Button variant="contained">
-            <CSVLink style={{ textDecoration: "none", fontWeight: "700"}} data={csvData} filename="records.csv">
-                Download CSV
-            </CSVLink>
-        </Button>
-      
-    );
-  };
-
-  const handleChangePage = (_, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
   };
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  const records = response.results; // Access the array of records
+  const records = response.results;
 
   const filteredRecords = records.filter(
     (record) =>
       record.name.first.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filter === '' || record.fieldToFilter === filter)
+      (filter === "" || record.fieldToFilter === filter)
   );
 
+  const columns = [
+    { field: "id", headerName: "ID", width: 100 },
+    {
+      field: "name",
+      headerName: "Name",
+      width: 200,
+      valueGetter: (params) =>
+        `${params.row.name.first} ${params.row.name.last}`,
+    },
+    { field: "email", headerName: "Email", width: 300 },
+    { field: "gender", headerName: "Gender", width: 100 },
+    { field: "age", headerName: "Age", width: 100 },
+    { field: "phone", headerName: "Phone", width: 150 },
+    { field: "pic", headerName: "Image", width: 150 },
+  ];
+
+  const rows = filteredRecords.map((record) => ({
+    id: record.id.value,
+    name: record.name,
+    email: record.email,
+    gender: record.gender,
+    age: record.dob.age,
+    phone: record.phone,
+    pic: record.picture.medium,
+  }));
+
   return (
-    <div style={{ margin: '28px 0'}}>
-      <div style={{ marginBottom: "18px"}}>
-      <TextField
-        label="Search"
-        variant="outlined"
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
-      <FormControl variant="outlined">
-        <InputLabel>Filter</InputLabel>
-        <Select value={filter} onChange={handleFilterChange} label="Filter">
-          <MenuItem value="">All</MenuItem>
-          {/* Add filter options */}
-        </Select>
-      </FormControl>
+    <Box m="20px">
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <TextField
+            label="Search"
+            variant="filled"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            style={{ border: "none" }}
+          />
+        </div>
+        <div>
+          <Button variant="contained">
+            <CSVLink
+              style={{
+                 textDecoration: "none",
+                  fontWeight: "700",
+                   color: "#fff",
+                    alignItems: "center",
+                     display: "flex"
+                }}
+              data={filteredRecords}
+              filename="records.csv"
+            >
+              Export CSV
+              <FileDownloadOutlinedIcon />
+            </CSVLink>
+          </Button>
+        </div>
       </div>
-      <TableContainer component={Paper} variant='outlined'>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Gender</TableCell>
-              {/* Add more headers */}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredRecords
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((record) => (
-                <TableRow key={record.login.uuid}>
-                  <TableCell>{record.login.uuid}</TableCell>
-                  <TableCell>{record.name.first + ' ' + record.name.last}</TableCell>
-                  <TableCell>{record.email}</TableCell>
-                  <TableCell>{record.gender}</TableCell>
-                  {/* Display more fields */}
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50]}
-        component="div"
-        count={filteredRecords.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-      {handleDownload()}
-    </div>
+
+      <Box
+        m="40px 0 0 0"
+        height="75vh"
+        sx={{
+          "& .MuiDataGrid-root": {
+            border: "none",
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "none",
+          },
+          "& .name-column--cell": {
+            color: colors.greenAccent[300],
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: colors.blueAccent[700],
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-virtualScroller": {
+            backgroundColor: colors.primary[400],
+          },
+          "& .MuiDataGrid-footerContainer": {
+            borderTop: "none",
+            backgroundColor: colors.blueAccent[700],
+          },
+          "& .MuiCheckbox-root": {
+            color: `${colors.greenAccent[200]} !important`,
+          },
+        }}
+      >
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={rowsPerPage}
+          page={page}
+          onPageChange={(newPage) => setPage(newPage)}
+          onPageSizeChange={(newPageSize) => {
+            setRowsPerPage(newPageSize);
+            setPage(0);
+          }}
+          checkboxSelection
+        />
+      </Box>
+    </Box>
   );
 };
 
