@@ -2,29 +2,19 @@ import React from "react";
 import { useQuery } from "react-query";
 import { CSVLink } from "react-csv";
 import { fetchRecords } from "./api";
-import {
-  TextField,
-  Button,
-  Box,
-  useTheme
-} from "@mui/material";
+import { TextField, Button, Box, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "./theme";
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 
 const Dashboard = () => {
-
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
 
   const { data: response, isLoading } = useQuery("records", fetchRecords);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [filter, setFilter] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
-
-
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -36,10 +26,8 @@ const Dashboard = () => {
 
   const records = response.results;
 
-  const filteredRecords = records.filter(
-    (record) =>
-      record.name.first.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filter === "" || record.fieldToFilter === filter)
+  const filteredRecords = records.filter((record) =>
+    record.name.first.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const columns = [
@@ -84,12 +72,12 @@ const Dashboard = () => {
           <Button variant="contained">
             <CSVLink
               style={{
-                 textDecoration: "none",
-                  fontWeight: "700",
-                   color: "#fff",
-                    alignItems: "center",
-                     display: "flex"
-                }}
+                textDecoration: "none",
+                fontWeight: "700",
+                color: "#fff",
+                alignItems: "center",
+                display: "flex",
+              }}
               data={filteredRecords}
               filename="records.csv"
             >
